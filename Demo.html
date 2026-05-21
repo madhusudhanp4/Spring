@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewimport"
+    content="width=device-width,
+    initial-scale=1.0">
+
+    <title> HTML Basics Project </title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: brown;
+            margin: 20px;
+        }
+        h1{
+            color: darkblue;
+            text-align: center;
+        }
+        #main-heading{
+            background-color:blue;
+            padding: auto;
+            border: 3px solid blue;
+        }
+        .box{
+            background-color: lightblue;
+            
+        }
+    </style>
+    <body>
+        <border>
+            <h1> My HTML Basics Project </h1>
+            <h2> My HTML Basics </h2>
+            <h3> My HTML Basics </h3>
+            <h4> My HTML Basics </h4>
+            <h4> My HTML Basics </h4>
+            <h5> My HTML Basics </h5>
+            <p> Learning HTML </p>
+            <p> HTML - Hyper Text Markup Language</p>
+            <p> This is line one <br> This is another line </p>
+            <hr> 
+            <h2> Anchor Tags </h2>
+            <a href "https://www.google.com/" target="_blank"> Visit Google </a>
+            <hr>
+            <h2> Image Tag </h2>
+            <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s"
+            alt = "HTML Logo"
+            width ="100" >
+            <hr>
+            <h2> Ordered List </h2>
+            <ol>
+                <li> Apple </li>
+                <li> Orange </li>
+                <li> Banana </li>
+            </ol>
+            <hr>
+            <h2> Table Creation </h2>
+            <table border = "1">
+                <tr>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Id</th>
+                </tr>
+                <tr>
+                    <td>Madhu</td>
+                    <td>HTML</td>
+                    <td>101</td>
+                </tr>
+            </table>
+            <hr>
+            <h2>Table 2-2</h2>
+            <table border = "1"> 
+                <tr>
+                    <th> Name </th>
+                    <th>Marks</th>
+                </tr>
+                <tr>
+                    <td>Madhu</td>
+                    <td> 95</td>
+                </tr>
+            </table>
+            <hr>
+            <h2> STudent Registration Form </h2>
+            <form>
+                <label for "name"> Full Name: </label>
+                <input 
+                    type = "text"
+                    id = "email" 
+                    placeholder="Enter your name" required
+                    >
+                    <br><br>
+                <label for="email"> Email: </label>
+                <input 
+                    type ="email"
+                    id = "email"
+                    placeholder="Enter your email" required
+                    >
+                <label for = "password"> Password: </label>
+                <input 
+                    type="password"
+                    id = "password"
+                    minlength="6"
+                    >
+                <br><br>
+                <label for="age">Age:</label>
+                <input 
+                    type="number"
+                    id = "age"
+                    min="18"
+                    max="60"
+                    >
+                    <br><br>
+                <label for="dob">Date of Birth:</label>
+                <input 
+                    type="date"
+                    id="dob"
+                    >
+                <br><br>
+                <h3>Gender</h3>
+                <input type="radio" name="Gender" id="male">
+                <label for="male">Male</label>
+                <input type="radio" name = "Gender" id="Female">
+                <label for ="Female" >Female</label> 
+                <br><br>
+                <input type="submit" value = "Register">
+            </form>
+        </border>
+    </body>
+    </head>
+</html>
