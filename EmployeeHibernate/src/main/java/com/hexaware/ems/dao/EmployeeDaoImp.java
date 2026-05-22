@@ -4,6 +4,8 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 
 import com.hexaware.ems.entity.Employee;
@@ -53,19 +55,27 @@ public class EmployeeDaoImp implements IEmployeeDao {
 	@Override
 	public Employee getByEid(int eid) {
 		// TODO Auto-generated method stub
-		return null;
+
+		Employee emp = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        emp = session.get(Employee.class, eid);   // ✅ fetch by primary key
+
+        session.close();
+
+        return emp;
 	}
 
 
 	@Override
 	public List<Employee> getAllEmployees() {
-
-    List<Employee> list = null;
+		
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-
-        list = session.createQuery("from Employee", Employee.class).list();
-
+        
+        Query query = session.createQuery("from Employee", Employee.class);
+        
+        List<Employee> list = query.getResultList();
         session.close();
 
 
