@@ -32,7 +32,8 @@ public class EmployeeServiceImp implements IEmployeeService {
 	@Override
 	public int updateEmployee(Employee emp) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.updateEmployee(emp);
+		//return 0;
 	}
 
 	public static boolean validateEmp(Employee emp) {
@@ -52,7 +53,8 @@ public class EmployeeServiceImp implements IEmployeeService {
 	@Override
 	public int deleteByEid(int eid) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.deleteByEid(eid);
+		//return 0;
 	}
 
 	@Override
