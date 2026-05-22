@@ -73,9 +73,48 @@ public class Client {
 
 			case 3:
 
+			    System.out.println("Enter Employee Id to Update");
+			    int updateId = scanner.nextInt();
+
+			    Employee existingEmp = service.getByEid(updateId);
+
+			    if (existingEmp != null) {
+
+			        System.out.println("Enter New Name");
+			        existingEmp.setEname(scanner.next());
+
+			        System.out.println("Enter New Salary");
+			        existingEmp.setSalary(scanner.nextDouble());
+
+			        int updateCount = service.updateEmployee(existingEmp);
+
+			        if (updateCount > 0) {
+			            System.out.println("Employee updated successfully..");
+			        } else {
+			            System.err.println("Employee update failed...");
+			        }
+
+			    } else {
+			        System.err.println("Employee not found with Eid " + updateId);
+			    }
+
+
 				break;
 
 			case 4:
+
+			    System.out.println("Enter Employee Id to Delete");
+			    int deleteId = scanner.nextInt();
+
+			    int deleteCount = service.deleteByEid(deleteId);
+
+			    if (deleteCount > 0) {
+			        System.out.println("Employee deleted successfully..");
+			    } else {
+			        System.err.println("Employee not found or delete failed...");
+			    }
+
+	
 
 				break;
 			case 5:
