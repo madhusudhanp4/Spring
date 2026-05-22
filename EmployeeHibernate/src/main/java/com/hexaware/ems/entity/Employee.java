@@ -2,8 +2,13 @@ package com.hexaware.ems.entity;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
 	
+	@Id
 	private int eid;
 	private String ename;
 	private  double salary;

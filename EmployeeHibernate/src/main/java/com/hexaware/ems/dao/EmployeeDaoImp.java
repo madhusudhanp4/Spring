@@ -56,10 +56,21 @@ public class EmployeeDaoImp implements IEmployeeDao {
 		return null;
 	}
 
+
 	@Override
 	public List<Employee> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+    List<Employee> list = null;
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        list = session.createQuery("from Employee", Employee.class).list();
+
+        session.close();
+
+
+    return list;
+}
+
 
 }
