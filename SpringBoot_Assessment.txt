@@ -1,0 +1,124 @@
+
+JavaBasedConfiguration.java
+
+package com.gl.configstyles.javabased;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.gl.configstyles.service.CallNotificationService;
+import com.gl.configstyles.service.SmsNotificationService;
+
+@Configuration
+public class JavaBasedConfiguration {
+
+	 @Bean(name = "smsNotificationService")
+     public SmsNotificationService smsNotificationService(){
+        return new SmsNotificationService("SMS_SERVICE");
+     }
+    
+    @Bean(name = "callNotificationService")
+    public CallNotificationService callNotificationService(){
+        return new CallNotificationService("CALL_SERVICE");
+    }
+}
+
+
+
+
+
+EmailNotificationService.java
+
+package com.gl.configstyles.service;
+
+import org.springframework.stereotype.Component;
+
+@Component("emailNotificationService")
+public class EmailNotificationService implements NotificationService {
+    private String serviceName;
+
+    public EmailNotificationService(){
+        this.serviceName = "EMAIL_SERVICE";
+    }
+
+    public EmailNotificationService(String serviceName) {
+        this.serviceName = "serviceName";
+    }
+
+    public ServiceResponse sendNotification(String notification) {
+        return new ServiceResponse(serviceName, notification);
+    }
+
+}
+
+
+
+
+
+
+App.java
+package com.gl.configstyles;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan(basePackages = "com.gl.configstyles")
+public class App {
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+    
+}
+
+
+
+
+
+
+
+XmlBasedConfiguration.xml
+
+package com.gl.configstyles.xmlbased;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+
+@Configuration
+@ImportResource({"classpath:xml_based_bean_configuration.xml"})
+public class XmlBasedConfiguration {
+
+}
+
+
+
+
+
+
+xml_based_bean_configuration.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id = "thirdPartyNotificationService"
+        
+        class = "com.gl.configstyles.service.ThirdPartyNotificationService">
+
+        <constructor-arg value = "THIRD_PARTY_SERVICE"/>
+
+        </bean>
+
+</beans>
+
+
+
+
+
+
+
+
