@@ -1,46 +1,43 @@
 package com.book.orm.crud;
 
-import java.io.Serializable;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.hexaware.orm.crud.entity.Employee;
+import com.book.orm.crud.entity.Book;
 
-/**
- * Hello world!
- *
- */
 public class App {
-	public static void main(String[] args) {
 
-		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    public static void main(String[] args) {
 
-		Session session = sessionFactory.openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
 
-		Transaction tr = session.beginTransaction();
+        Book b1 = new Book();
+        b1.setId(1);
+        b1.setName("Java");
+        b1.setPrice(500);
 
-		 Employee emp = new Employee(101,"javeed",30000);
-		 Serializable ser = session.save(emp);
+        Book b2 = new Book();
+        b2.setId(2);
+        b2.setName("Python");
+        b2.setPrice(400);
 
-		// System.out.println(ser.toString());
+        Book b3 = new Book();
+        b3.setId(3);
+        b3.setName("C++");
+        b3.setPrice(300);
 
-		Employee emp1 = session.get(Employee.class, 101);
+        Book b4 = new Book();
+        b4.setId(4);
+        b4.setName("Spring");
+        b4.setPrice(700);
 
-		emp1.setSalary(70000);
+        session.save(b1);
+        session.save(b2);
+        session.save(b3);
+        session.save(b4);
 
-		//session.save(emp);   // insert or update 
-		
-		session.saveOrUpdate(emp1);   // insert or update
-
-		System.out.println(emp1);
-		
-		//session.delete(emp);
-		
-			//System.out.println("After delete "+emp);
-
-		tr.commit();
-
-	}
+        tx.commit();
+        session.close();
+    }
 }

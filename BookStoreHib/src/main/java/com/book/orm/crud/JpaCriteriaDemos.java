@@ -1,6 +1,5 @@
 package com.book.orm.crud;
 
-
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -8,45 +7,26 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
-import com.hexaware.orm.crud.entity.Employee;
+import com.book.orm.crud.entity.Book;
 
 public class JpaCriteriaDemos {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-		
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
 
-		SessionFactory  sessionFactory = HibernateUtil.getSessionFactory();
-	
+        Root<Book> root = cq.from(Book.class);
 
-			Session session =sessionFactory.openSession();
-			
-				
-			CriteriaBuilder  cb =		session.getCriteriaBuilder();
-			
-				CriteriaQuery<Employee>  cq  =		cb.createQuery(Employee.class);
-				
-				Root<Employee>  root  =		cq.from(Employee.class);
-				
-				 cq.select(root);
-				 
-				 
-				Query<Employee>  query = 			session.createQuery(cq);
-				
-								List<Employee> list =		query.getResultList();
-								
-								System.out.println(list);
-		
-								
-								Query<Employee>  query2 =		  session.createQuery(cq);
-								
-								query2.getResultStream().forEach(System.out::println);
-								
+        cq.select(root);
 
-	}
+        List<Book> list = session.createQuery(cq).getResultList();
 
+        list.forEach(System.out::println);
+
+        session.close();
+    }
 }

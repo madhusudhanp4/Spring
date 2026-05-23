@@ -2,23 +2,28 @@ package com.book.orm.crud;
 
 import java.util.List;
 
-import com.hexaware.orm.crud.dao.EmployeeDao;
-import com.hexaware.orm.crud.entity.Employee;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.book.orm.crud.entity.Book;
 
 public class NamedQueriesDemo {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-		EmployeeDao  dao = new EmployeeDao();
-		
-		List<Employee>  list = dao.getAllEmployees();
-		
-			list.stream().forEach((emp)->{System.out.println(emp);});
-			
-			
-			System.out.println("Max Salary is : "+ dao.getMaxSalary());
+        Query<Book> query = session.createNamedQuery(
+                "getBooksByPrice",
+                Book.class
+        );
 
-	}
+        query.setParameter("amount", 300.0);
 
+        List<Book> list = query.getResultList();
+
+        list.forEach(System.out::println);
+
+        session.close();
+    }
 }

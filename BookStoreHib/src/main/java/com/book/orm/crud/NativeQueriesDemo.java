@@ -3,52 +3,27 @@ package com.book.orm.crud;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
-import com.hexaware.orm.crud.entity.Employee;
+import com.book.orm.crud.entity.Book;
 
 public class NativeQueriesDemo {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-		SessionFactory  sessionFactory = HibernateUtil.getSessionFactory();
-		
+        NativeQuery<Book> query = session.createNativeQuery(
+                "SELECT * FROM Book WHERE price > ?",
+                Book.class
+        );
 
-		Session session =sessionFactory.openSession();
-		
-		
-		
-				String  sqlQuery = "select * from Emp_Table";
-				
-				
-			NativeQuery<Employee>	nativeQuery =	session.createNativeQuery(sqlQuery,Employee.class);
-			
-					List<Employee>  list =			nativeQuery.getResultList();
-					
-						list.stream().forEach(System.out::println);
-					
-		
-						
-				Transaction  tr =		session.beginTransaction();
+        query.setParameter(1, 300);
 
-				String   insertSqlQuery = "insert into  Emp_Table values(?1,?2,?3)";
-				
-				NativeQuery   nativeQuery2 =	session.createNativeQuery(insertSqlQuery);
-						
-								nativeQuery2.setParameter(1, 107);
-								nativeQuery2.setParameter(2, "Akash");
-								nativeQuery2.setParameter(3, 45000);
-				
-				
-							int  count =		nativeQuery2.executeUpdate();
-							
-							tr.commit();
+        List<Book> list = query.getResultList();
 
-							System.out.println(count +" record inserted...");
-							
-}
-	
+        list.forEach(System.out::println);
+
+        session.close();
+    }
 }

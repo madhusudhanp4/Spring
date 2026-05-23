@@ -2,46 +2,32 @@ package com.book.orm.crud;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-import com.hexaware.orm.crud.entity.Employee;
+import org.hibernate.Session;
+
+import com.book.orm.crud.entity.Book;
 
 public class CriteriaQueriesDemo {
 
-	
-		public static void main(String[] args) {
-			
+    public static void main(String[] args) {
 
-			SessionFactory  sessionFactory = HibernateUtil.getSessionFactory();
-		
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-				Session session =sessionFactory.openSession();
-			
-				Criteria  cr =session.createCriteria(Employee.class);
-				
-						List<Employee>  list=			cr.list();
-						
-						list.stream().forEach(System.out::println);
-						
-					
-						cr.add(Restrictions.between("salary", 30000.0, 70000.0));
-									// select * from Emp_Table where salary between 30000.0 and 70000.0;
-		
-				List<Employee>   list2 =		cr.list();
-				
-					list2.stream().forEach(System.out::println);
-					
-					
-								cr.add(Restrictions.gt("salary", 30000.0));
-								cr.addOrder(Order.asc("ename"));
-		
-								System.out.println(cr.list());
-								
-		}
-	
-	
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+
+        Root<Book> root = cq.from(Book.class);
+
+        cq.select(root)
+          .where(cb.greaterThan(root.get("price"), 300.0));
+
+        List<Book> list = session.createQuery(cq).getResultList();
+
+        list.forEach(System.out::println);
+
+        session.close();
+    }
 }

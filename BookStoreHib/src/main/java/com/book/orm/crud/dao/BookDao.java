@@ -1,37 +1,42 @@
-package com.book.orm.crud.entity;
+package com.book.orm.crud.dao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
+import java.util.List;
 
-@Entity
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
-@NamedQuery(
-    name = "getBooksByPrice",
-    query = "from Book where price > :amount"
-)
+import com.book.orm.crud.HibernateUtil;
+import com.book.orm.crud.entity.Book;
 
-public class Book {
+public class BookDao {
 
-    @Id
-    private int id;
-    private String name;
-    private double price;
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
 
-    public Book() {}
+    // Named Query
+    public List<Book> getBooksByPrice() {
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+        Query<Book> query = session.createNamedQuery(
+                "getBooksByPrice",
+                Book.class
+        );
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+        query.setParameter("amount", 300.0);
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+        return query.getResultList();
+    }
 
-    @Override
-    public String toString() {
-        return id + " " + name + " " + price;
+    // HQL Query
+    public List<Book> getAllBooksHQL() {
+
+        Query<Book> query = session.createQuery(
+                "from Book where price > :amount",
+                Book.class
+        );
+
+        query.setParameter("amount", 300.0);
+
+        return query.getResultList();
     }
 }
-``
