@@ -1,12 +1,11 @@
 package com.hexaware.ems.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.hexaware.ems.entity.Employee;
 import com.hexaware.ems.service.IEmployeeService;
 
-@Component
+@RestController
 public class EmployeeController {
 
     @Autowired

@@ -12,7 +12,7 @@ public interface IEmployeeService {
 			
 			int updateEmployee(Employee emp);
 			
-			int  deleteByEid(int eid); // throws EmployeeNotFoundException;
+			int  deleteByEid(int eid); 
 			
 			Employee      getByEid(int eid) throws EmployeeNotFoundException;
 			
