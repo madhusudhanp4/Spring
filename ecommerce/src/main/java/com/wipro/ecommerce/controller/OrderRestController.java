@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.service.annotation.DeleteExchange;
 
 import com.wipro.ecommerce.entity.Order;
 import com.wipro.ecommerce.services.IOrderService;
@@ -19,32 +20,39 @@ import com.wipro.ecommerce.services.IOrderService;
 @RequestMapping("/orders")
 public class OrderRestController {
 
-    @Autowired
-    IOrderService service;
-
-    @PostMapping("/add")
-    public Order add(@RequestBody Order o) {
-        return service.addOrder(o);
-    }
-
-    @PutMapping("/update")
-    public Order update(@RequestBody Order o) {
-        return service.updateOrder(o);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        service.deleteOrder(id);
-        return "Deleted";
-    }
-
-    @GetMapping("/{id}")
-    public Order getById(@PathVariable int id) {
-        return service.getOrderById(id);
-    }
-
-    @GetMapping
-    public List<Order> getAll() {
-        return service.getAllOrders();
-    }
+	@Autowired
+	IOrderService service;
+	
+	
+	@PostMapping
+	public Order addProduct(@RequestBody Order order) {
+		
+		return service.addOrder(order);
+	}
+	
+	@PutMapping
+	public Order updateOrder(@RequestBody Order order) {
+		
+		return service.updateOrder(order);
+	}
+	
+	@DeleteMapping("/{id}")
+	public String deleteOrder(@PathVariable int id) {
+		
+		return service.deleteOrder(id);
+	}
+	
+	@GetMapping("/{id}")
+	public Order getOrder(@PathVariable int id) {
+		
+		return service.getOrderById(id);
+	}
+	
+	@GetMapping
+	public List<Order> getAllOrders(){
+		
+		return service.getAllOrders();
+	}
+	
+	
 }

@@ -19,34 +19,35 @@ import com.wipro.ecommerce.services.ICustomerService;
 @RequestMapping("/customers")
 public class CustomerRestController {
     
-    @Autowired
-    ICustomerService service;
-    
-    @PostMapping
-    public Customer addCustomer(@RequestBody Customer customer) {
-        return service.addCustomer(customer);
-    }
-    
- 
-    @GetMapping
-    public List<Customer> getAllCustomers() {
-        return service.getAllCustomers();
-    }
-
- 
-    @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable int id) {
-        return service.getCustomerById(id);
-    }
-
-    @PutMapping
-    public Customer updateCustomer(@RequestBody Customer customer) {
-        return service.updateCustomer(customer);
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteCustomer(@PathVariable int id) {
-        service.deleteCustomer(id);
-        return "Deleted";
-    }
+	
+	@Autowired
+	ICustomerService service;
+	
+	
+	@PostMapping
+	public Customer addCustomer(@RequestBody Customer customer) {
+		return service.addCustomer(customer);
+	}
+	
+	@PutMapping
+	public Customer updateCustomer(@RequestBody Customer customer) {
+		return service.updateCustomer(customer);
+	}
+	
+	@DeleteMapping("/{id}")
+	public String deleteCustomer(@PathVariable int id) {
+		return service.deleteCustomer(id);
+	}
+	
+	@GetMapping("/{id}")
+	public Customer getCustomer(@PathVariable int id) {
+		return service.getCustomerById(id);
+	}
+	
+	@GetMapping
+	public List<Customer> getAllCustomers(){
+		
+		return service.getAllCustomers();
+	}
+	
 }

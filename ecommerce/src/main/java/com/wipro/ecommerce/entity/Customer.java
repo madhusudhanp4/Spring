@@ -5,16 +5,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
 	@Id
 	private int customerId;
 	private String name;
-	private String email;
 	private String phone;
-	
-	
+	private String email;
+
 	
 	public Customer() {
 		super();
@@ -22,15 +21,13 @@ public class Customer {
 	}
 
 
-
-	public Customer(int customerId, String name, String email, String phone) {
+	public Customer(int customerId, String name, String phone, String email) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
-		this.email = email;
 		this.phone = phone;
+		this.email = email;
 	}
-
 
 
 	public int getCustomerId() {
@@ -38,11 +35,9 @@ public class Customer {
 	}
 
 
-
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-
 
 
 	public String getName() {
@@ -50,23 +45,9 @@ public class Customer {
 	}
 
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 
 	public String getPhone() {
@@ -74,12 +55,20 @@ public class Customer {
 	}
 
 
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	
-	
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 	
 }

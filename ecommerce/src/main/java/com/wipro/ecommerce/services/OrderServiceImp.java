@@ -9,33 +9,40 @@ import com.wipro.ecommerce.repository.OrderRepository;
 @Service
 public class OrderServiceImp implements IOrderService {
 
-    @Autowired
-    OrderRepository repo;
+	@Autowired
+	OrderRepository repo;
+	
+	@Override
+	public Order addOrder(Order order) {
+		// TODO Auto-generated method stub
+		return repo.save(order);
+	}
 
-    @Override
-    public Order addOrder(Order order) {
-        return repo.save(order);
-    }
+	@Override
+	public Order updateOrder(Order order) {
+		// TODO Auto-generated method stub
+		return repo.save(order);
+	}
 
-    @Override
-    public Order updateOrder(Order order) {
-        return repo.save(order);
-    }
-    
-    @Override
-    public void deleteOrder(int id) {
-        repo.deleteById(id);
-    }
+	@Override
+	public String deleteOrder(int id) {
+		// TODO Auto-generated method stub
+		repo.deleteById(id);
+		
+		return "Order deleted";
+	}
 
-    
-    @Override
-    public Order getOrderById(int id) {
-        return repo.findById(id).orElse(null);
-    }
+	@Override
+	public Order getOrderById(int id) {
+		// TODO Auto-generated method stub
+		
+		return repo.findById(id).orElse(null);
+	}
 
-    
-    @Override
-    public List<Order> getAllOrders() {
-        return repo.findAll();
-    }
+	@Override
+	public List<Order> getAllOrders() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
+	}
+
 }

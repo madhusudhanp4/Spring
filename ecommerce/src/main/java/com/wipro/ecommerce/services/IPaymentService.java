@@ -10,9 +10,9 @@ public interface IPaymentService {
 
     Payment updatePayment(Payment payment);
 
-    void deletePayment(int id);
+    String deletePayment(int paymentId);
 
-    Payment getPaymentById(int id);
+    Payment getPaymentById(int paymentId);
 
     List<Payment> getAllPayments();
 }

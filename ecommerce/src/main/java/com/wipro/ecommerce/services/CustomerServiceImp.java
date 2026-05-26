@@ -10,45 +10,43 @@ import com.wipro.ecommerce.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceImp implements  ICustomerService{
-	
-	
-	@Autowired
-	CustomerRepository custrepo;
 
-	
-	
+	@Autowired
+	CustomerRepository repo;
 	
 	@Override
 	public Customer addCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		return custrepo.save(customer);
-	}
-
-	@Override
-	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return custrepo.findAll();
-	}
-
-	@Override
-	public Customer getCustomerById(int id) {
-		// TODO Auto-generated method stub
-		return custrepo.findById(id).orElse(null);
+		
+		return repo.save(customer);
 	}
 
 	@Override
 	public Customer updateCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		return custrepo.save(customer);
+		return repo.save(customer);
 	}
 
 	@Override
-	public void deleteCustomer(int id) {
+	public String deleteCustomer(int customerId) {
 		// TODO Auto-generated method stub
-		custrepo.deleteById(id);
+		repo.deleteById(customerId);
 		
+		return "Customer deleted";
+	}
+
+	@Override
+	public Customer getCustomerById(int customerId) {
+		// TODO Auto-generated method stub
+		
+		return repo.findById(customerId).orElse(null);
+	}
+
+	@Override
+	public List<Customer> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
 	}
 	
 	
-
 }

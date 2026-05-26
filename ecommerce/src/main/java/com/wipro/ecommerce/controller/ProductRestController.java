@@ -19,32 +19,36 @@ import com.wipro.ecommerce.services.IProductService;
 @RequestMapping("/products")
 public class ProductRestController {
 
-    @Autowired
-    IProductService service;
-
-    @PostMapping("/add")
-    public Product add(@RequestBody Product p) {
-        return service.addProduct(p);
-    }
-
-    @PutMapping("/update")
-    public Product update(@RequestBody Product p) {
-        return service.updateProduct(p);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        service.deleteProduct(id);
-        return "Deleted";
-    }
-
-    @GetMapping("/{id}")
-    public Product getById(@PathVariable int id) {
-        return service.getProductById(id);
-    }
-
-    @GetMapping
-    public List<Product> getAll() {
-        return service.getAllProducts();
-    }
+	@Autowired
+	IProductService service;
+	
+	@PostMapping
+	public Product addProduct(@RequestBody Product product) {
+		
+		return service.addProduct(product);
+	}
+	
+	@PutMapping
+	public Product updateProduct(@RequestBody Product product) {
+		
+		return service.updateProduct(product);
+	}
+	
+	@DeleteMapping("/{id}")
+	public String deleteProduct(@PathVariable int id) {
+		
+		return	service.deleteProduct(id);
+	}
+	
+	@GetMapping("/{id}")
+	public Product getProductById(@PathVariable int id) {
+		
+		return service.getProductById(id);
+	}
+	
+	@GetMapping
+	public List<Product> getAllProducts(){
+		
+		return service.getAllProducts();
+	}
 }

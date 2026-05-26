@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.service.annotation.DeleteExchange;
 
 import com.wipro.ecommerce.entity.Payment;
 import com.wipro.ecommerce.services.IPaymentService;
@@ -19,32 +20,36 @@ import com.wipro.ecommerce.services.IPaymentService;
 @RequestMapping("/payments")
 public class PaymentRestController {
 
-    @Autowired
-    IPaymentService service;
-
-    @PostMapping("/add")
-    public Payment add(@RequestBody Payment p) {
-        return service.addPayment(p);
-    }
-
-    @PutMapping("/update")
-    public Payment update(@RequestBody Payment p) {
-        return service.updatePayment(p);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        service.deletePayment(id);
-        return "Deleted";
-    }
-
-    @GetMapping("/{id}")
-    public Payment getById(@PathVariable int id) {
-        return service.getPaymentById(id);
-    }
-
-    @GetMapping
-    public List<Payment> getAll() {
-        return service.getAllPayments();
-    }
+	@Autowired
+	IPaymentService service;
+	
+	
+	@PostMapping
+	public Payment addPayment(@RequestBody Payment payment) {
+		
+		return service.addPayment(payment);
+	}
+	
+	@PutMapping
+	public Payment updatePayment(@RequestBody Payment payment) {
+		
+		return service.updatePayment(payment);
+	}
+	
+	@DeleteMapping("{id}")
+	public String deletePayment(@PathVariable int id) {
+		
+		return service.deletePayment(id);
+	}
+	
+	@GetMapping("/{id}")
+	public Payment getPayment(@PathVariable int id) {
+		
+		return service.getPaymentById(id);
+	}
+	
+	@GetMapping
+	public List<Payment> getAllPayments(){
+		return service.getAllPayments();
+	}
 }

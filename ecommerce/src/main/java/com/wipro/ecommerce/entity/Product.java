@@ -9,9 +9,11 @@ public class Product {
 
 	@Id
     private int productId;
-    private String name;
+    private String productName;
     private double price;
     private int quantity;
+    
+    
     
     
 	public Product() {
@@ -19,55 +21,57 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Product(int productId, String name, double price, int quantity) {
+	
+	
+	
+	
+	public Product(int productId, String productName, double price, int quantity) {
 		super();
 		this.productId = productId;
-		this.name = name;
+		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
 	}
 
-
+	
+	
+	
+	
+	
 	public int getProductId() {
 		return productId;
 	}
-
 
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-
 
 	public double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-    
+	
+	
+	
 	
 }

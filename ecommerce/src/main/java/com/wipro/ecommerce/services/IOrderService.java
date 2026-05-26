@@ -10,7 +10,7 @@ public interface IOrderService {
 
     Order updateOrder(Order order);
 
-    void deleteOrder(int id);
+    String deleteOrder(int id);
 
     Order getOrderById(int id);
 
